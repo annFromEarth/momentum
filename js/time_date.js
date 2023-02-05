@@ -3,11 +3,12 @@ const date = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
 const body = document.querySelector('.body');
+let randomNum
 
 
 function showTime() {
     const dateData = new Date();
-    const currentTime = dateData.toLocaleTimeString();
+    const currentTime = dateData.toLocaleTimeString('en-US', {hour12:false, hourCycle: 'h24'});
     time.textContent = currentTime;
 
     const options = {weekday: 'long', day: 'numeric', month: 'long'};
@@ -36,38 +37,65 @@ function getTimeOfDay(x) {
 
 showTime();
 
-function setLocalStorage() {
-    localStorage.setItem('name', name.value);
-}
+// function setLocalStorage() {
+//     localStorage.setItem('name', name.value);
+// }
 
-window.addEventListener('beforeunload', setLocalStorage);
+// window.addEventListener('beforeunload', setLocalStorage);
 
-function getLocalStorage() {
-    if (localStorage.getItem('name')) {
-        name.value = localStorage.getItem('name');
-    }
+// function getLocalStorage() {
+//     if (localStorage.getItem('name')) {
+//         name.value = localStorage.getItem('name');
+//     }
 
-    else {name.placeholder = 'Your Name'}
-}
+//     else {name.placeholder = 'Your Name'}
+// }
 
-window.addEventListener('load', getLocalStorage)
+// window.addEventListener('load', getLocalStorage)
 
 
-/********************    background image   ********************/
+/********************    background image init   ********************/
 
-function getRandomNum() { return Math.floor(Math.random()*20+1)};
+function getRandomNum() { randomNum = Math.floor(Math.random()*20+1)};
+getRandomNum();
+console.log(randomNum)
 
 function setBg() {
-    const dateData = new Date();
-    const hours = dateData.getHours();
+    const dateData = new Date(); //????here
+    const hours = dateData.getHours(); //????here
 
-    timeOfDay = getTimeOfDay(hours);
-    bgNum = getRandomNum().toString().padStart(2, "0");
-    body.style.backgroundImage = `url(https://raw.github.com/annFromEarth/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg)`
+    timeOfDay = getTimeOfDay(hours);   //????const
+    bgNum = randomNum.toString().padStart(2, "0");   //????const
 
-    console.log(timeOfDay)
-    console.log(bgNum)
+    const img = new Image();
+    img.src = `https://raw.github.com/annFromEarth/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`
+    
+    img.onload = () => {      
+        body.style.backgroundImage = `url(${img.src})`;
+      };  
 }
+
 setBg()
+
+/********************    background image slider   ********************/
+
+function getSlideNext() {
+    randomNum ==20 ? randomNum = 1 : randomNum = randomNum+1;
+    setBg();
+    console.log(randomNum)
+}
+
+function getSlidePrev() { 
+    randomNum ==1 ? randomNum = 20 : randomNum = randomNum-1;
+    setBg();
+    console.log(randomNum)
+}
+
+const slideNext = document.querySelector('.slide-next');
+const slidePrev = document.querySelector('.slide-prev');
+
+slideNext.addEventListener('click', getSlideNext)
+slidePrev.addEventListener('click', getSlidePrev)
+
 
 
