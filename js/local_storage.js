@@ -10,7 +10,7 @@ function getLocalStorageName() {
         name.value = localStorage.getItem('name');
     }
 
-    else {name.placeholder = 'Your Name'}
+    else {name.placeholder = '[ Your Name ]'}
 }
 
 window.addEventListener('load', getLocalStorageName)

@@ -34,8 +34,6 @@ async function getWeather() {
       weatherDescription.textContent = data.weather[0].description;
       wind.textContent = `${Math.round(data.wind.speed)} m/s`;
       humidity.textContent = `${Math.round(data.main.humidity)} %`;
-
-      console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
   }
     catch {
 
@@ -46,7 +44,6 @@ async function getWeather() {
       weatherDescription.textContent = ``;
       wind.textContent = ``;
       humidity.textContent = ``;
-
     }
   }
 
