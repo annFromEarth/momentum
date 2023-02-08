@@ -4,7 +4,7 @@ const buttonChangeQuotes = document.querySelector('.change-quote')
 
 let randomQuote
 
-function getRandomQuote() { randomQuote = Math.floor(Math.random()*50+1)};
+function getRandomQuote() { randomQuote = Math.floor(Math.random()*16+1)};
 getRandomQuote();
 
 async function getQuotes() {  

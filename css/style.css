@@ -247,13 +247,57 @@ body {
 
 .footer {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
   width: 100%;
   height: 30vh;
   min-height: 160px;  
   padding: 20px;
+  position: relative;
+}
+
+.settings {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  bottom:0;
+  padding: 20px;
+  border: #fff solid 1px;
+  border-radius: 10px;
+  margin-bottom: 90px;
+  margin-left: 70px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.settings.active {
+  display: flex;
+  position: absolute;
+}
+
+.settings_item {
+  margin-bottom: 10px;
+}
+
+.settings_item:last-child {
+  margin-bottom: 0px;
+}
+
+.settings_button {
+  margin: 20px;
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/img/settings-30px.png"); 
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.quotes_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .change-quote {
@@ -269,6 +313,13 @@ body {
 .author {
   min-height: 20px;
 }
+
+.todo {
+  align-self: flex-end;
+  margin: 20px;
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .time {
