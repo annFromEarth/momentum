@@ -21,6 +21,10 @@ body {
   transition: background-image 1s ease-in-out;
 }
 
+body * {
+  transition: 0.3s ease-in-out ;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -263,10 +267,11 @@ body {
   align-items: flex-start;
   bottom:0;
   padding: 20px;
-  border: #fff solid 1px;
+  /* border: #fff solid 1px; */
   border-radius: 10px;
   margin-bottom: 90px;
-  margin-left: 70px;
+  margin-left: 20px;
+  max-width: 350px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -275,12 +280,34 @@ body {
   position: absolute;
 }
 
-.settings_item {
+.settings_item_container {
   margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.settings_item:last-child {
+.settings_item_container:last-child {
   margin-bottom: 0px;
+}
+
+.settings_item {
+  margin: 3px 0;
+}
+
+.option {
+  margin: 3px 0 3px 5px;
+  padding: 0 5px;
+  border: #fff solid 0.5px;
+  border-radius: 5px;
+  background: none;
+}
+
+.option:hover {
+  background-color: rgba(255, 255, 255, 0.4)
+}
+
+.option.selected {
+  background-color: rgba(255, 255, 255, 0.4)
 }
 
 .settings_button {
@@ -318,6 +345,14 @@ body {
   align-self: flex-end;
   margin: 20px;
   cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }
 
 

@@ -1,5 +1,4 @@
 import playList from './playlist.js';
-console.log(playList);
 
 const play = document.querySelector('.play');
 const playNextButton = document.querySelector('.play-next');
