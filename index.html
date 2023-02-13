@@ -10,7 +10,7 @@
 </head>
 <body class="body">
   <header class="header">
-    <div class="player">
+    <div class="player hidden">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
@@ -18,7 +18,7 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
+    <div class="weather hidden">
       <input type="text" class="city" />
       <i class="weather-icon owf"></i>
       <div class="weather-error"></div>
@@ -35,9 +35,9 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <time class="time hidden"></time>
+    <date class="date hidden"></date>
+    <div class="greeting-container hidden">
         <span class="greeting"></span>
         <input type="text" class="name"/>
     </div>
@@ -57,24 +57,24 @@
       </div>
       <div class="settings_item_container">
         <div class="settings_item hide_set"></div>
-        <option class="option block" value="time">time</option>
-        <option class="option block" value="date">date</option>
-        <option class="option block" value="greeting-container">greeting</option>
-        <option class="option block" value="quotes_container">quote</option>
-        <option class="option block" value="weather">weather</option>
-        <option class="option block" value="player">audio</option>
-        <option class="option block" value="todo">todo</option>
+        <option class="option hide block selected" value="time">time</option>
+        <option class="option hide block selected" value="date">date</option>
+        <option class="option hide block selected" value="greeting-container">greeting</option>
+        <option class="option hide block selected" value="quotes_container">quote</option>
+        <option class="option hide block selected" value="weather">weather</option>
+        <option class="option hide block selected" value="player">audio</option>
+        <option class="option hide block selected" value="todo">todo</option>
       </div>
     </div>
     <div class="settings_button"></div>
-    <div class="quotes_container">
+    <div class="quotes_container hidden">
       <button class="change-quote"></button>
       <div>
         <div class="quote"></div>
         <div class="author"></div>
       </div>
     </div>
-    <div class="todo">Todo</div>
+    <div class="todo hidden">Todo</div>
   </footer>
   <script type="module" src="js/time_date.js"></script>
   <script type="module" src="js/weather.js"></script>

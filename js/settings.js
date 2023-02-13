@@ -121,51 +121,56 @@ function selectOptionSrc(y) {
 
 /*hide blocks css*/
 
-let arr = [];
+let arrVisibleBlocks = ['time','date','greeting-container','quotes_container','weather','player','todo'];
 
-function initHiddenBlocksArray() {
+// let arr =[];
+
+function initVisibleBlocksArray() {
+  if (!localStorage.getItem('hidden_blocks')) {
+    return
+  }
+
+
   if (!(localStorage.hidden_blocks == "" )) {
-   arr = localStorage.getItem('hidden_blocks').split(',')
-   console.log("wow")
+   arrVisibleBlocks = localStorage.getItem('hidden_blocks').split(',')
   }
 }
 
-initHiddenBlocksArray()
+initVisibleBlocksArray()
 
-console.log(arr)
+  function makeVisibleBlocksArray(y) {
 
-
-  function makeHiddenArray(y) {
-
-    if (arr.includes(y.target.value)) {
-      arr = arr.filter(i => !(i == y.target.value));
-      localStorage.setItem('hidden_blocks', arr); 
+    if (arrVisibleBlocks.includes(y.target.value)) {
+      arrVisibleBlocks = arrVisibleBlocks.filter(i => !(i == y.target.value));
+      localStorage.setItem('hidden_blocks', arrVisibleBlocks); 
+      console.log(arrVisibleBlocks)
     }
     else {
-    arr.push(y.target.value);
-    localStorage.setItem('hidden_blocks', arr);    
+    arrVisibleBlocks.push(y.target.value);
+    localStorage.setItem('hidden_blocks', arrVisibleBlocks);  
+    console.log(arrVisibleBlocks)  
   }
   }
 
-  function saveHiddenReload() {
-    localStorage.setItem('hidden_blocks', arr);
+  function saveVisibleBlocksReload() {
+    localStorage.setItem('hidden_blocks', arrVisibleBlocks);
   }
 
 
   /*** render hidden blocks on loading page*/
 
-  window.addEventListener('load', renderHiddenBlocks);
-  window.addEventListener('beforeunload', saveHiddenReload);
+  window.addEventListener('load', renderVisibleBlocks);
+  // window.addEventListener('beforeunload', saveVisibleBlocksReload);
 
-  function renderHiddenBlocks() {
+  function renderVisibleBlocks() {
 
-    let arr1 = localStorage.getItem('hidden_blocks').split(',')
+    // let arr1 = localStorage.getItem('hidden_blocks').split(',')
 
-    arr1.forEach(function (e) { 
+    arrVisibleBlocks.forEach(function (e) { 
       document.querySelector(`.${e}`).classList.toggle('hidden');})
 
-    options.forEach(o => {
-        if (localStorage.getItem('hidden_blocks').split(',').includes(o.value)) {
+    optionsBlock.forEach(o => {
+        if (arrVisibleBlocks.includes(o.value)) {
           o.classList.toggle('selected');
         }
       
@@ -175,7 +180,7 @@ console.log(arr)
   /*88888888*/
 
 optionsBlock.forEach(x => x.addEventListener ('click', selectOptionBlock));
-optionsBlock.forEach(x => x.addEventListener ('click', makeHiddenArray));
+optionsBlock.forEach(x => x.addEventListener ('click', makeVisibleBlocksArray));
 
 
 function selectOptionBlock(y) {
