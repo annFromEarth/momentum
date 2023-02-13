@@ -8,7 +8,6 @@ let randomQuote
 
 function getRandomQuote() { randomQuote = Math.floor(Math.random()*15+1)};
 getRandomQuote();
-let lang = 'en';
 
 async function getQuotes() {  
 
@@ -18,20 +17,38 @@ async function getQuotes() {
   
     getRandomQuote();
 
-    if (state.languages == 'en') {
+    if (localStorage.getItem('language') == 'ru') {
+        quote.textContent = data[randomQuote].quoteText_ru
+        author.textContent = data[randomQuote].quoteAuthor_ru
+    }
+
+    else {
         quote.textContent = data[randomQuote].quoteText_en
         author.textContent = data[randomQuote].quoteAuthor_en
     }
+  }
+  getQuotes();
+
+  buttonChangeQuotes.addEventListener('click', getQuotes);
+
+  
+  
+  export async function translateQuote() {  
+
+    const quotes = '../assets/json/quotes.json';
+    const res = await fetch(quotes);
+    const data = await res.json(); 
+  
+    // getRandomQuote();
 
     if (state.languages == 'ru') {
         quote.textContent = data[randomQuote].quoteText_ru
         author.textContent = data[randomQuote].quoteAuthor_ru
     }
 
-    // quote.textContent = data[randomQuote].quoteText_en
-    // author.textContent = data[randomQuote].quoteAuthor_en
+    if ( state.languages == 'en') {
+        quote.textContent = data[randomQuote].quoteText_en
+        author.textContent = data[randomQuote].quoteAuthor_en
+    }
 
   }
-  getQuotes();
-
-  buttonChangeQuotes.addEventListener('click', getQuotes);

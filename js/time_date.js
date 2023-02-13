@@ -1,39 +1,112 @@
+import dictionary from './dictionary.js';
+import state from './state.js';
+
 const time = document.querySelector('.time');
 const date = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
 const body = document.querySelector('.body');
 let randomNum
+let locale
 
+export function setLocale() {
+    if (localStorage.getItem('language') == 'ru' ) {
+        locale='ru-RU';
+    }
+    else {locale='en-US';}
+}
 
-function showTime() {
+setLocale()
+
+window.addEventListener('beforeunload', setLocalStorageName);
+
+window.addEventListener('load', getLocalStorageName)
+
+export function getLocalStorageName() {
+
+    if (localStorage.getItem('name')) {
+        name.value = localStorage.getItem('name');
+    }
+
+    else {
+    // name.value = "";
+     
+    if (localStorage.language =='ru' ) {
+        name.placeholder = '[ Ваше имя ]'
+    }
+
+    else {
+        name.placeholder = '[ Your Name ]'
+    }
+}
+}
+
+function setLocalStorageName() {
+    localStorage.setItem('name', name.value);
+}
+
+export function showTime() {
+
     const dateData = new Date();
-    const currentTime = dateData.toLocaleTimeString('en-US', {hour12:false, hourCycle: 'h24'});
+    const currentTime = dateData.toLocaleTimeString(`${locale}`, {hour12:false, hourCycle: 'h24'});
     time.textContent = currentTime;
-
     const options = {weekday: 'long', day: 'numeric', month: 'long'};
-    const currentDate = dateData.toLocaleDateString('en-US', options)
-    date.textContent = currentDate;
-
     const hours = dateData.getHours();
-    greeting.textContent = `Good ${getTimeOfDay(hours)}, `
+
+    // if (!localStorage.getItem('language'))
+
+    if (localStorage.getItem('language') == 'ru' ) {
+        const currentDate = dateData.toLocaleDateString('ru-RU', options);
+        date.textContent = currentDate;
+        greeting.textContent = `${getTimeOfDayPhrase(hours)}, `;
+    }
+
+    else {
+        const currentDate = dateData.toLocaleDateString('en-US', options);
+        date.textContent = currentDate;
+        greeting.textContent = `${getTimeOfDayPhrase(hours)}, `;
+    } 
 
     setTimeout(showTime, 1000);
 }
 
-function getTimeOfDay(x) {
+function getTimeOfDayPhrase(x) {
 
-    let morning = [06, 07, 08, 09, 10, 11];
+    let morning = [6, 7, 8, 9, 10, 11];
     let afternoon = [12, 13, 14, 15, 16, 17];
     let evening = [18, 19, 20, 21, 22, 23];
-    let night = [00, 01, 02, 03, 04, 05];
+    // let night = [00, 01, 02, 03, 04, 05];
+
+    if (localStorage.getItem('language') == 'ru' ) {
+        if (morning.includes(x)) return 'Доброе утро';
+    if (afternoon.includes(x)) return 'Добрый день';
+    if (evening.includes(x)) return 'Добрый вечер';
+    else return 'Доброй ночи';
+
+    }
+    else {
+        if (morning.includes(x)) return 'Good morning';
+    if (afternoon.includes(x)) return 'Good afternoon';
+    if (evening.includes(x)) return 'Good evening';
+    else return 'Good night';
+    }
+
+}
+
+function getTimeOfDay(x) {
+
+    let morning = [6, 7, 8, 9, 10, 11];
+    let afternoon = [12, 13, 14, 15, 16, 17];
+    let evening = [18, 19, 20, 21, 22, 23];
+    // let night = [00, 01, 02, 03, 04, 05];
 
     if (morning.includes(x)) return 'morning';
     if (afternoon.includes(x)) return 'afternoon';
     if (evening.includes(x)) return 'evening';
     else return 'night';
 
-}
+    }
+
 
 showTime();
 
@@ -58,14 +131,13 @@ showTime();
 
 function getRandomNum() { randomNum = Math.floor(Math.random()*20+1)};
 getRandomNum();
-console.log(randomNum)
 
 function setBg() {
     const dateData = new Date(); //????here
     const hours = dateData.getHours(); //????here
 
-    timeOfDay = getTimeOfDay(hours);   //????const
-    bgNum = randomNum.toString().padStart(2, "0");   //????const
+    let timeOfDay = getTimeOfDay(hours);   //????const
+    let bgNum = randomNum.toString().padStart(2, "0");   //????const
 
     const img = new Image();
     img.src = `https://raw.github.com/annFromEarth/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`

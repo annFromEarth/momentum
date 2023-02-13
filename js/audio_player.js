@@ -17,12 +17,9 @@ function makePlayList() {
         li.textContent = playList[i].title;
         playListContainer.append(li);
       }
-    console.log('goo')
-}
+ }
 
 makePlayList();
-
-console.log(playListContainer.childNodes[0]);
 
 // playList.forEach(i => {
 //     li.classList.add('play-item');
