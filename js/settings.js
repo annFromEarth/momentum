@@ -148,7 +148,6 @@ initVisibleBlocksArray()
     else {
     arrVisibleBlocks.push(y.target.value);
     localStorage.setItem('hidden_blocks', arrVisibleBlocks);  
-    console.log(arrVisibleBlocks)  
   }
   }
 
