@@ -76,7 +76,18 @@
     </div>
     <div class="todo hidden">
       <div class="todo_btn">Todo</div>
-      <div class="todo_conatiner">Tododododo</div>
+      <div class="todo_conatiner">
+        <div class="todos">
+        </div>
+        <template id="todo_template">
+          <div class="todo_item">
+            <input type="checkbox" class="item_completed">
+            <input type="text" class="item_description" placeholder="new todo">
+            <div class="delete_button"></div>
+          </div>
+        </template>
+        <button class="add_todo_btn">Add</button>
+      </div>
     </div>
   </footer>
   <script type="module" src="js/time_date.js"></script>

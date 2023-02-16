@@ -363,7 +363,7 @@ body * {
   border-radius: 10px;
   margin-bottom: 90px;
   margin-left: 20px;
-  max-width: 350px;
+  width: 350px;
   background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   margin-right: 20px;
@@ -371,6 +371,46 @@ body * {
 
 .todo_conatiner.active {
   display: flex;
+}
+
+.delete_button {
+  margin-left: 20px;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../assets/img/trashbin20px_white.png");
+}
+
+.add_todo_btn {
+  margin-top: 20px;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.todo_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item_completed {
+  margin-right: 10px;
+}
+
+.item_completed:checked + .item_description {
+  text-decoration: line-through;
+}
+
+.item_description {
+  padding: 5px;
+  width: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .hidden {
