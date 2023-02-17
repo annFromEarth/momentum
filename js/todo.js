@@ -15,9 +15,11 @@ function showTodo() {
 /*get Todos from Local Storage*/
 
 function getTodos() {
-    const savedTodos = localStorage.getItem("todo") || "[]";
+    const savedTodos = localStorage.getItem("todo") || '[]';
+    console.log(JSON.parse(savedTodos))
     return JSON.parse(savedTodos);
 }
+getTodos() 
 
 /*save Todos*/
 
@@ -26,13 +28,15 @@ let arrayTodos = getTodos();
 function setTodos(arrayTodos) {
     const todosJSON = JSON.stringify(arrayTodos);
     localStorage.setItem("todo", todosJSON);
+    console.log(todosJSON)
 }
+setTodos(arrayTodos)
 
 /*adding new Todo*/
 
 function addTodo() {
     arrayTodos.unshift({
-        description: "new",
+        description: "",
         completed: false,
     })
 
@@ -40,8 +44,8 @@ function addTodo() {
     refreshTodoList();
 }
 
-function updateTodos(todo, key, value) {
-    todo[key] = value;
+function updateTodos(y, key, value) {
+    y[key] = value;
     setTodos(arrayTodos);
     refreshTodoList();
 
@@ -62,20 +66,25 @@ function refreshTodoList() {
     } )
 
     Todos.innerHTML = "";
-    for (const todo in arrayTodos) {
+
+    for (const x in arrayTodos) {
         const todoElement = TodoTemplate.content.cloneNode(true);
         const descriptionInput = todoElement.querySelector('.item_description');
         const completedInput = todoElement.querySelector('.item_completed');
-        const deleteBtn = todoElement.querySelector('.delete_button');
 
-        descriptionInput.value = todo.description;
-        completedInput.checked = todo.completed;
+        descriptionInput.value = arrayTodos[x].description;
+        completedInput.checked = arrayTodos[x].completed;
 
-        descriptionInput.addEventListener('change', () => {updateTodos(todo, 'description', descriptionInput.value)});
-        completedInput.addEventListener("change", () => {updateTodos(todo, 'completed', completedInput.checked)})
+        console.log(arrayTodos)
+
+        console.log(arrayTodos[x])
+
+        descriptionInput.addEventListener('change', () => {updateTodos(arrayTodos[x], 'description', descriptionInput.value)});
+        completedInput.addEventListener("change", () => {updateTodos(arrayTodos[x], 'completed', completedInput.checked)})
 
 
         Todos.appendChild(todoElement)
+        deleteActivate()
     }
 }
 
@@ -84,4 +93,30 @@ refreshTodoList();
 /*add todo btn*/
 
 btnAddTodo.addEventListener('click', addTodo)
+
+/***delete Todos */
+
+function deleteActivate() {
+    const deleteBtns = document.querySelectorAll('.delete_button');
+    deleteBtns.forEach( b => b.addEventListener("click", todoDelete))
+}
+
+deleteActivate()
+
+
+
+function todoDelete() {
+    arrayTodos = arrayTodos.filter(x => x.description !== this.previousElementSibling.value)
+    console.log(arrayTodos)
+    refreshTodoList();
+    setTodos(arrayTodos);
+    deleteActivate()
+
+ 
+    
+}
+
+
+
+
 

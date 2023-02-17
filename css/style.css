@@ -349,6 +349,9 @@ body * {
   align-self: flex-end;
   margin: 20px;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  padding: 3px;
   /* text-decoration: underline; */
 }
 
@@ -363,7 +366,7 @@ body * {
   border-radius: 10px;
   margin-bottom: 90px;
   margin-left: 20px;
-  width: 350px;
+  /* width: 350px; */
   background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   margin-right: 20px;
@@ -374,7 +377,7 @@ body * {
 }
 
 .delete_button {
-  margin-left: 20px;
+  margin: 0px 10px 10px 20px;
   display: inline-block;
   height: 20px;
   width: 20px;
@@ -382,7 +385,15 @@ body * {
 }
 
 .add_todo_btn {
-  margin-top: 20px;
+  height: 30px;
+  width: 30px;
+  background-image: url("../assets/img/add-icon-png-30px.png");
+  opacity: 0.6;
+}
+
+.add_todo_btn_description {
+  display: inline-block;
+
 }
 
 .todos {
@@ -390,6 +401,7 @@ body * {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 15px;
 }
 
 .todo_item {
@@ -399,7 +411,7 @@ body * {
 }
 
 .item_completed {
-  margin-right: 10px;
+  margin: 5px 10px 15px 0;
 }
 
 .item_completed:checked + .item_description {
@@ -407,8 +419,8 @@ body * {
 }
 
 .item_description {
-  padding: 5px;
-  width: 200px;
+  padding: 2px;
+  width: 250px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
