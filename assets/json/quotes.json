@@ -1,4 +1,7 @@
-    [ {
+    {
+        "quotes": [
+    
+        {
     "quoteText_en": "Never ignore a gut feeling, but never believe that it's enough.",
     "quoteAuthor_en": "Robert Heller",
     "quoteText_ru": "Никогда не игнорируй внутренний голос, но никогда не доверяй ему полностью.",
@@ -78,4 +81,4 @@
     "quoteAuthor_en": "Epictetus",
     "quoteText_ru": "Если хочешь стать писателем - пиши.",
     "quoteAuthor_ru": "Эпикрет"
-    }]
+    }]}
