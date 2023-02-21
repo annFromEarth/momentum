@@ -6,6 +6,11 @@ const date = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
 const body = document.querySelector('.body');
+let background_source="";
+let timeOfDay;
+
+const optionsSrc = document.querySelectorAll('.option.src')
+
 let randomNum
 let locale
 
@@ -110,33 +115,16 @@ function getTimeOfDay(x) {
 
 showTime();
 
-// function setLocalStorage() {
-//     localStorage.setItem('name', name.value);
-// }
-
-// window.addEventListener('beforeunload', setLocalStorage);
-
-// function getLocalStorage() {
-//     if (localStorage.getItem('name')) {
-//         name.value = localStorage.getItem('name');
-//     }
-
-//     else {name.placeholder = 'Your Name'}
-// }
-
-// window.addEventListener('load', getLocalStorage)
-
-
 /********************    background image init   ********************/
 
 function getRandomNum() { randomNum = Math.floor(Math.random()*20+1)};
 getRandomNum();
 
-function setBg() {
+function setBgGithub() {
     const dateData = new Date(); //????here
     const hours = dateData.getHours(); //????here
 
-    let timeOfDay = getTimeOfDay(hours);   //????const
+    timeOfDay = getTimeOfDay(hours);   //????const
     let bgNum = randomNum.toString().padStart(2, "0");   //????const
 
     const img = new Image();
@@ -147,20 +135,34 @@ function setBg() {
       };  
 }
 
-setBg()
+
 
 /********************    background image slider   ********************/
 
 function getSlideNext() {
+
+    console.log(background_source)
+
+     if (background_source=="github") {
     randomNum ==20 ? randomNum = 1 : randomNum = randomNum+1;
-    setBg();
-    console.log(randomNum)
+    setBgGithub();
+
+     } else if (background_source=="unsplash") { getBackgroundUnsplash();
+        
+     } else if (background_source=="flickr") { getBackgroundFlickr(); }
 }
 
+
 function getSlidePrev() { 
-    randomNum ==1 ? randomNum = 20 : randomNum = randomNum-1;
-    setBg();
-    console.log(randomNum)
+
+    console.log(background_source)
+
+    if (background_source=="github") {
+        randomNum ==1 ? randomNum = 20 : randomNum = randomNum-1;
+        setBgGithub();
+    } else if (background_source=="unsplash") { getBackgroundUnsplash();
+        
+    } else if (background_source=="flickr") { getBackgroundFlickr(); }  
 }
 
 const slideNext = document.querySelector('.slide-next');
@@ -168,6 +170,136 @@ const slidePrev = document.querySelector('.slide-prev');
 
 slideNext.addEventListener('click', getSlideNext)
 slidePrev.addEventListener('click', getSlidePrev)
+
+/********************    background sources init   ********************/
+
+function initBackgroundSource() {
+    if (localStorage.getItem('background_src')) {
+        background_source = localStorage.getItem('background_src');
+        document.querySelector(`.${localStorage.getItem('background_src')}`).classList.add('selected');
+    }
+
+    else {
+        background_source = "github";
+        document.querySelector(`.github`).classList.add('selected')
+    }
+
+    setBackroungOfSource();
+}
+
+initBackgroundSource()
+
+/********************    background sources save   ********************/
+
+
+function saveBackgroundSource() {
+    localStorage.setItem('background_src', background_source)
+}
+
+/*choose background source css*/
+
+optionsSrc.forEach(x => x.addEventListener ('click', selectOptionSrc));
+
+function selectOptionSrc(y) {
+
+  let optionsSrcSelected = document.querySelector('.option.src.selected');
+ 
+  if (optionsSrcSelected) {
+    optionsSrcSelected.classList.remove('selected');
+    y.target.classList.add('selected');
+    background_source = y.target.value;
+    saveBackgroundSource();
+    setBackroungOfSource();
+  }
+  else {
+    y.target.classList.toggle('selected');
+    background_source = y.target.value;
+    saveBackgroundSource;
+    setBackroungOfSource();
+  }
+}
+
+/******** function setBackroungOfSource */
+
+function setBackroungOfSource() {
+    if (background_source == "github") {
+        console.log (background_source);
+        setBgGithub()
+    }
+
+    if (background_source == "unsplash") {
+        console.log (background_source);
+        getBackgroundUnsplash()
+    }
+
+    if (background_source == "flickr") {
+        console.log (background_source);
+        getBackgroundFlickr();
+    }
+}
+
+
+/****set background by Flickr */
+
+async function getBackgroundFlickr() {
+    try {
+      const urlFlickr = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=3119e9b655c079e1d987c8984edf920d&tags=${timeOfDay}&per_page=20&extras=url_l&format=json&nojsoncallback=1`;
+      const resFlickr = await fetch(urlFlickr);
+      const dataFlickr = await resFlickr.json(); 
+
+    console.log(dataFlickr)
+    console.log(dataFlickr.photos.photo.length)
+
+    let randomF
+
+    function getRandomF(length) { randomF = Math.floor(Math.random()*length)};
+    getRandomF(dataFlickr.photos.photo.length);
+
+      const backgroundURL = dataFlickr.photos.photo[`${randomF}`].url_l;
+      console.log (backgroundURL)
+
+      const img = new Image();
+        img.src = backgroundURL;
+    
+        img.onload = () => {      
+            body.style.backgroundImage = `url(${img.src})`;
+          }; 
+
+    }
+
+    catch {
+        console.log ("smth went wrong with Flickr")
+    }
+}
+
+
+//****set background by Unsplash */
+
+async function getBackgroundUnsplash() { 
+    try {
+
+        const urlUnsplash = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}+nature&client_id=pTHkMom4S0FG6gq99WjCH4akB6LnTnZBOYWhIjAzsoo`;
+        const resUnsplash = await fetch(urlUnsplash);
+        const dataUnsplash = await resUnsplash.json(); 
+        const img_urlUnsplash = dataUnsplash.urls.regular;
+
+        const img = new Image();
+        img.src = img_urlUnsplash;
+    
+        img.onload = () => {      
+            body.style.backgroundImage = `url(${img.src})`;
+          }; 
+    }
+
+    catch {
+        console.log ("smth went wrong with Unsplash");
+    }
+}
+
+
+
+
+
 
 
 

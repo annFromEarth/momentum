@@ -22,6 +22,7 @@ body {
 }
 
 body * {
+  /* background-size: cover; */
   transition: 0.3s ease-in-out ;
 }
 
@@ -351,7 +352,7 @@ body * {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
-  padding: 3px;
+  padding: 5px;
   /* text-decoration: underline; */
 }
 
@@ -361,7 +362,7 @@ body * {
   align-items: flex-start;
   bottom:0;
   right: 0;
-  padding: 20px;
+  padding: 10px;
   /* border: #fff solid 1px; */
   border-radius: 10px;
   margin-bottom: 90px;
@@ -369,7 +370,7 @@ body * {
   /* width: 350px; */
   background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .todo_conatiner.active {

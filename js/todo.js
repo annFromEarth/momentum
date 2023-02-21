@@ -16,7 +16,6 @@ function showTodo() {
 
 function getTodos() {
     const savedTodos = localStorage.getItem("todo") || '[]';
-    console.log(JSON.parse(savedTodos))
     return JSON.parse(savedTodos);
 }
 getTodos() 
@@ -28,7 +27,6 @@ let arrayTodos = getTodos();
 function setTodos(arrayTodos) {
     const todosJSON = JSON.stringify(arrayTodos);
     localStorage.setItem("todo", todosJSON);
-    console.log(todosJSON)
 }
 setTodos(arrayTodos)
 
@@ -74,10 +72,6 @@ function refreshTodoList() {
 
         descriptionInput.value = arrayTodos[x].description;
         completedInput.checked = arrayTodos[x].completed;
-
-        console.log(arrayTodos)
-
-        console.log(arrayTodos[x])
 
         descriptionInput.addEventListener('change', () => {updateTodos(arrayTodos[x], 'description', descriptionInput.value)});
         completedInput.addEventListener("change", () => {updateTodos(arrayTodos[x], 'completed', completedInput.checked)})

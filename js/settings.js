@@ -10,7 +10,6 @@ import {getLang} from './weather.js'
 
 const btnSettings = document.querySelector('.settings_button')
 const divSettings = document.querySelector('.settings')
-const options = document.querySelectorAll('.option')
 
 const language_set = document.querySelector('.language_set')
 const background_set = document.querySelector('.background_set')
@@ -55,6 +54,21 @@ document.addEventListener('click', (e) => {
     divSettings.classList.remove('active');
   }
 })
+
+
+/************* init selected language (css) */
+
+function initLanguage() {
+  if (localStorage.getItem('language')) {
+      document.querySelector(`.${localStorage.getItem('language')}`).classList.add('selected');
+  }
+
+  else {
+      document.querySelector(`.en`).classList.add('selected');
+  }
+}
+
+initLanguage() ;
 
 /*choose language css*/
 
@@ -102,22 +116,26 @@ function changeLanguage(e) {
   console.log(state.languages);
 }
 
-/*choose background source css*/
+// /*choose background source css*/
 
-optionsSrc.forEach(x => x.addEventListener ('click', selectOptionSrc));
+// optionsSrc.forEach(x => x.addEventListener ('click', selectOptionSrc));
 
-function selectOptionSrc(y) {
+// function selectOptionSrc(y) {
 
-  let optionsSrcSelected = document.querySelector('.option.src.selected');
+//   let optionsSrcSelected = document.querySelector('.option.src.selected');
  
-  if (optionsSrcSelected) {
-    optionsSrcSelected.classList.remove('selected');
-    y.target.classList.add('selected');
-  }
-  else {
-    y.target.classList.toggle('selected');
-  }
-}
+//   if (optionsSrcSelected) {
+//     optionsSrcSelected.classList.remove('selected');
+//     y.target.classList.add('selected');
+//     background_source = y.target.value;
+//     saveBackgroundSource();
+//   }
+//   else {
+//     y.target.classList.toggle('selected');
+//     background_source = y.target.value;
+//     saveBackgroundSource;
+//   }
+// }
 
 /*hide blocks css*/
 
@@ -143,7 +161,6 @@ initVisibleBlocksArray()
     if (arrVisibleBlocks.includes(y.target.value)) {
       arrVisibleBlocks = arrVisibleBlocks.filter(i => !(i == y.target.value));
       localStorage.setItem('hidden_blocks', arrVisibleBlocks); 
-      console.log(arrVisibleBlocks)
     }
     else {
     arrVisibleBlocks.push(y.target.value);
