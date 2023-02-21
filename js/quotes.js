@@ -18,13 +18,13 @@ async function getQuotes() {
     getRandomQuote();
 
     if (localStorage.getItem('language') == 'ru') {
-        quote.textContent = data[randomQuote].quoteText_ru
-        author.textContent = data[randomQuote].quoteAuthor_ru
+        quote.textContent = data.quotes[randomQuote].quoteText_ru
+        author.textContent = data.quotes[randomQuote].quoteAuthor_ru
     }
 
     else {
-        quote.textContent = data[randomQuote].quoteText_en
-        author.textContent = data[randomQuote].quoteAuthor_en
+        quote.textContent = data.quotes[randomQuote].quoteText_en
+        author.textContent = data.quotes[randomQuote].quoteAuthor_en
     }
   }
   getQuotes();
