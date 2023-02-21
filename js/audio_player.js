@@ -1,5 +1,4 @@
 import playList from './playlist.js';
-console.log(playList);
 
 const play = document.querySelector('.play');
 const playNextButton = document.querySelector('.play-next');
@@ -18,12 +17,9 @@ function makePlayList() {
         li.textContent = playList[i].title;
         playListContainer.append(li);
       }
-    console.log('goo')
-}
+ }
 
 makePlayList();
-
-console.log(playListContainer.childNodes[0]);
 
 // playList.forEach(i => {
 //     li.classList.add('play-item');

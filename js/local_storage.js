@@ -1,17 +1,20 @@
-function setLocalStorage() {
-    localStorage.setItem('name', name.value);
-    localStorage.setItem('city', city.value);
-}
+// const city = document.querySelector('.city');
+// const name = document.querySelector('.name');
 
-window.addEventListener('beforeunload', setLocalStorage);
+// function setLocalStorage() {
+//     localStorage.setItem('name', name.value);
+//     localStorage.setItem('city', city.value);
+// }
 
-function getLocalStorageName() {
-    if (localStorage.getItem('name')) {
-        name.value = localStorage.getItem('name');
-    }
+// window.addEventListener('beforeunload', setLocalStorage);
 
-    else {name.placeholder = '[ Your Name ]'}
-}
+// function getLocalStorageName() {
+//     if (localStorage.getItem('name')) {
+//         name.value = localStorage.getItem('name');
+//     }
 
-window.addEventListener('load', getLocalStorageName)
+//     else {name.placeholder = '[ Your Name ]'}
+// }
+
+// window.addEventListener('load', getLocalStorageName)
 

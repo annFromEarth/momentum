@@ -10,7 +10,7 @@
 </head>
 <body class="body">
   <header class="header">
-    <div class="player">
+    <div class="player hidden">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
@@ -18,7 +18,7 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
+    <div class="weather hidden">
       <input type="text" class="city" />
       <i class="weather-icon owf"></i>
       <div class="weather-error"></div>
@@ -35,24 +35,69 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <time class="time hidden"></time>
+    <date class="date hidden"></date>
+    <div class="greeting-container hidden">
         <span class="greeting"></span>
         <input type="text" class="name"/>
     </div>
   </main>
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div class="settings">
+      <div class="settings_item_container">
+        <div class="settings_item language_set"></div>
+        <option class="option language en">en</option>
+        <option class="option language ru">ru</option>
+      </div>
+      <div class="settings_item_container">
+        <div class="settings_item background_set"></div>
+        <option class="option src github" value="github">github</option>
+        <option class="option src unsplash" value="unsplash">unsplash</option>
+        <option class="option src flickr" value="flickr">flickr</option>
+      </div>
+      <div class="settings_item_container">
+        <div class="settings_item hide_set"></div>
+        <option class="option hide block selected" value="time">time</option>
+        <option class="option hide block selected" value="date">date</option>
+        <option class="option hide block selected" value="greeting-container">greeting</option>
+        <option class="option hide block selected" value="quotes_container">quote</option>
+        <option class="option hide block selected" value="weather">weather</option>
+        <option class="option hide block selected" value="player">audio</option>
+        <option class="option hide block selected" value="todo">todo</option>
+      </div>
+    </div>
+    <div class="settings_button"></div>
+    <div class="quotes_container hidden">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+    <div class="todo hidden">
+      <div class="todo_btn">ToDo</div>
+      <div class="todo_conatiner">
+        <div class="todos">
+        </div>
+        <template id="todo_template">
+          <div class="todo_item">
+            <input type="checkbox" class="item_completed">
+            <input type="text" class="item_description" placeholder="new todo">
+            <div class="delete_button"></div>
+          </div>
+        </template>
+        <div class="add_todo_btn"></div>
+        <!-- <div class="add_todo_btn_description">add new todo</div> -->
+      </div>
     </div>
   </footer>
-  <script src="js/time_date.js"></script>
-  <script src="js/weather.js"></script>
+  <script type="module" src="js/time_date.js"></script>
+  <script type="module" src="js/weather.js"></script>
   <script src="js/local_storage.js"></script>
-  <script src="js/quotes.js"></script>
+  <script type="module" src="js/quotes.js"></script>
   <script type="module" src="js/audio_player.js"></script>
+  <script type="module" src="js/settings.js"></script>
+  <script type="module" src="js/todo.js"></script>
+  <script type="module" src="js/flickr.js"></script>
 </body>
 </html>
