@@ -6,6 +6,10 @@ const playPrevButton = document.querySelector('.play-prev');
 const playListDiv = document.querySelector('.playlist')
 const playlistTemplate = document.getElementById('playlist_template')
 const songTitleInfo = document.querySelector('.song_title')
+const songTimeTotal = document.querySelector('.time_length')
+const songTimeProgress = document.querySelector('.time_current')
+const timebarTotal = document.querySelector('.progress_bar')
+const timebarCurrent = document.querySelector('.progress_fill')
 
 let isPlay = false;
 let playNum = 0;
@@ -26,16 +30,6 @@ function makePlayList() {
     }
 }
 
-
-// function makePlayList() {
-//     for(let i = 0; i < playList.length; i++) {
-//         const li = document.createElement('li');
-//         li.classList.add('play-item');
-//         li.textContent = playList[i].title+" / "+playList[i].duration;
-//         playListContainer.append(li);
-//       }
-//  }
-
 makePlayList();
 
 const audio = new Audio();
@@ -49,7 +43,7 @@ function playAudio() {
 
     if (this.classList.contains("list")) {
 
-        if(!isPlay) {
+        if(!isPlay  && !(this.id==playNum)) {
 
             playNum = this.id;
 
@@ -61,8 +55,26 @@ function playAudio() {
             
             playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
             playListDiv.children[playNum].lastElementChild.classList.add('item-active')
+            return
+        }
 
-            songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+        if(!isPlay  && this.id==playNum) {
+            
+            playNum = this.id;
+
+            if (!audio.src) {
+                
+                audio.src = playList[playNum].file;
+                audio.currentTime = 0;
+            }
+
+            play.classList.add('pause');
+            isPlay = true
+            audio.play();
+            
+            playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
+            playListDiv.children[playNum].lastElementChild.classList.add('item-active')
+            return
         }
     
         else if(isPlay && this.id==playNum){
@@ -71,11 +83,8 @@ function playAudio() {
             isPlay = false
             audio.pause();
             playListDiv.children[playNum].firstElementChild.classList.remove('playlist_pause')
-            playListDiv.children[playNum].lastElementChild.classList.remove('item-active')
-
-            songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
-
-            
+            playListDiv.children[playNum].lastElementChild.classList.remove('item-active')   
+            return
         }
 
         else if(isPlay && !(this.id==playNum)){
@@ -87,8 +96,6 @@ function playAudio() {
             playListDiv.children[playNum].lastElementChild.classList.remove('item-active');
 
             playNum = this.id;
-            console.log(this.id);
-            console.log(playNum)
 
             audio.src = playList[playNum].file;
             audio.currentTime = 0;
@@ -98,25 +105,29 @@ function playAudio() {
             
             playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
             playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-
-            songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+            return
         }
     } 
 
     else if  (!this.classList.contains("list")) {
 
         if(!isPlay) {
+            if (!audio.src) {
 
-            audio.src = playList[playNum].file;
-            audio.currentTime = 0;
+                audio.src = playList[playNum].file;
+                audio.currentTime = 0;
+            }
+
             play.classList.add('pause');
             isPlay = true
             audio.play();
             
             playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
             playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-
             songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+            songTimeTotal.textContent = `${playList[playNum].duration}`
+
+            return
         }
     
         else {
@@ -125,8 +136,10 @@ function playAudio() {
             audio.pause();
             playListDiv.children[playNum].firstElementChild.classList.remove('playlist_pause')
             playListDiv.children[playNum].lastElementChild.classList.remove('item-active')
-
             songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+            songTimeTotal.textContent = `${playList[playNum].duration}`  
+
+            return
         }
     }
 }
@@ -148,9 +161,7 @@ function playNext() {
         playNum = 0;
         playNextPrevAudio();
         playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
-        playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-        songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
-
+        playListDiv.children[playNum].lastElementChild.classList.add('item-active')  
 
     }  else {
         playListDiv.children[playNum].firstElementChild.classList.remove('playlist_pause')
@@ -159,8 +170,10 @@ function playNext() {
         playNextPrevAudio();
         playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
         playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-        songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
     }
+
+    songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+    songTimeTotal.textContent = `${playList[playNum].duration}`
 } 
 
 function playPrev() {
@@ -172,7 +185,7 @@ function playPrev() {
         playNextPrevAudio();
         playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
         playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-        songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+ 
     } else {
         playListDiv.children[playNum].firstElementChild.classList.remove('playlist_pause')
         playListDiv.children[playNum].lastElementChild.classList.remove('item-active')
@@ -180,8 +193,37 @@ function playPrev() {
         playNextPrevAudio();
         playListDiv.children[playNum].firstElementChild.classList.add('playlist_pause')
         playListDiv.children[playNum].lastElementChild.classList.add('item-active')
-        songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
     }
+
+    songTitleInfo.textContent = `${+playNum+1}. ${playList[playNum].title}`
+    songTimeTotal.textContent = `${playList[playNum].duration}`
+}
+
+//click on timeline to skip around
+
+timebarTotal.addEventListener ('click', e => {
+    if (audio.src) {
+        const timelineWidth = window.getComputedStyle(timebarTotal).width;    
+    const timeToSeek = e.offsetX / parseInt(timelineWidth) * playList[playNum].durationS;
+    audio.currentTime = timeToSeek;
+    }
+    // const timelineWidth = window.getComputedStyle(timebarTotal).width;    
+    // const timeToSeek = e.offsetX / parseInt(timelineWidth) * playList[playNum].durationS;
+    // audio.currentTime = timeToSeek;
+    }, false);
+
+//check audio percentage and update time accordingly
+setInterval(() => {
+    timebarCurrent.style.width = audio.currentTime / playList[playNum].durationS * 100 + "%";
+    songTimeProgress.textContent = getTimeCodeFromNum(audio.currentTime);
+}, 1000);
+
+
+function getTimeCodeFromNum(num) {
+    let minutes = Math.floor(num/60);
+    let seconds = Math.round(num%60);
+
+    return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
 }
 
 // /*8************************************************************/

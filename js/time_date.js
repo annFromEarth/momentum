@@ -254,7 +254,6 @@ async function getBackgroundFlickr() {
         img.onload = () => {      
             body.style.backgroundImage = `url(${img.src})`;
           }; 
-
     }
 
     catch {
