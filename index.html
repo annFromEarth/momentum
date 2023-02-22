@@ -11,12 +11,43 @@
 <body class="body">
   <header class="header">
     <div class="player hidden">
-      <div class="player-controls">
-        <button class="play-prev player-icon"></button>
-        <button class="play player-icon"></button>
-        <button class="play-next player-icon"></button>
+      <div class="player_bar">
+        <div class="player-other">
+          <div class="song_info">
+            <div class="info_detail">
+              <div class="song_title">Song title</div>
+              <div class="song_time">
+                <div class="time_current">0:00</div>
+                <div class="time_divider">/</div>
+                <div class="time_length">0:00</div>
+              </div>
+            </div>
+            <div class="progress_bar">
+              <div class="progress_fill"></div>
+            </div>
+          </div>
+          <div class="volume_controls">
+            <div class="volume-btn">
+              <div class="volume icono-volumeMedium">v</div>
+            </div>  
+            <div class="volume-slider">
+              <div class="volume-percentage"></div>
+            </div>
+          </div>
+        </div>
+        <div class="player-controls">
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
+        </div>
       </div>
-      <ul class="play-list"></ul>
+      <div class="playlist"></div>
+      <template id="playlist_template">
+        <div class="playlist_item">
+          <div class="playlist_play_btn playlist_play list"></div>
+          <div class="playlist_song_info list"></div>
+        </div>
+      </template> 
     </div>
     <div class="weather hidden">
       <input type="text" class="city" />

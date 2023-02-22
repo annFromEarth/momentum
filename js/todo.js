@@ -51,17 +51,17 @@ function updateTodos(y, key, value) {
 
 function refreshTodoList() {
     //TODO sort items
-    arrayTodos.sort((a,b) => {
-        if (a.completed) {
-            return 1;
-        }
+    // arrayTodos.sort((a,b) => {
+    //     if (a.completed) {
+    //         return 1;
+    //     }
 
-        if (b.completed) {
-            return -1;
-        }
+    //     if (b.completed) {
+    //         return -1;
+    //     }
 
-        return a.description < b.description ? -1 : 1;
-    } )
+    //     return a.description < b.description ? -1 : 1;
+    // } )
 
     Todos.innerHTML = "";
 
