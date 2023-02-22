@@ -1,0 +1,86 @@
+    const quotes_T = [
+    
+        {
+    quoteText_en: "Never ignore a gut feeling, but never believe that it's enough.",
+    quoteAuthor_en: "Robert Heller",
+    quoteText_ru: "Никогда не игнорируй внутренний голос, но никогда не доверяй ему полностью.",
+    quoteAuthor_ru: "Роберт Хеллер"
+    }, {
+    quoteText_en: "Today is the tomorrow you worried about yesterday.",
+    quoteAuthor_en: "Wit",
+    quoteText_ru: "Сегодня - это завтра, о котором ты переживал вчера.",
+    quoteAuthor_ru: "Народная мудрость"
+    }, {
+    quoteText_en: "Reality leaves a lot to the imagination.",
+    quoteAuthor_en: "John Lennon",
+    quoteText_ru: "Реальность многое оставляет воображению.",
+    quoteAuthor_ru: "Джон Леннон"
+    }, {
+    quoteText_en: "A stumble may prevent a fall.",
+    quoteAuthor_en: "Wit",
+    quoteText_ru: "Споткнувшись, ты предотвратишь падение.",
+    quoteAuthor_ru: "Народная мудрость"
+    }, {
+    quoteText_en: "Our strength grows out of our weaknesses.",
+    quoteAuthor_en: "Ralph Waldo Emerson",
+    quoteText_ru: "Наши сильные стороны - продолжение наших слабостей.",
+    quoteAuthor_ru: "Ральф Вальдо Эмерсон"
+    }, {
+    quoteText_en: "Time is the most valuable thing a man can spend.",
+    quoteAuthor_en: "Theophrastus",
+    quoteText_ru: "Время - это самое ценное, что человек тратит в жизни.",
+    quoteAuthor_ru: "Теофраст"
+    }, {
+    quoteText_en: "Smile, breathe, and go slowly.",
+    quoteAuthor_en: "Thich Nhat Hanh",
+    quoteText_ru: "Улыбнись, выдохни, и потихоньку иди вперед.",
+    quoteAuthor_ru: "Тич Нат Хан"
+    }, {
+    quoteText_en: "The best way out is always through.",
+    quoteAuthor_en: "Robert Frost",
+    quoteText_ru: "Лучший выход - всегда насквозь.",
+    quoteAuthor_ru: "Роберт Фрост"
+    }, {
+    quoteText_en: "Problems are only opportunities with thorns on them.",
+    quoteAuthor_en: "Hugh Miller",
+    quoteText_ru: "Проблемы - это возможеости, покрытые шипами.",
+    quoteAuthor_ru: "Хью Миллер"
+    }, {
+    quoteText_en: "Write your plans in pencil and give God the eraser.",
+    quoteAuthor_en: "Paulo Coelho",
+    quoteText_ru: "Запиши свои планы карандашом и отдай богу ластик.",
+    quoteAuthor_ru: "Паоло Коэльо"
+    }, {
+    quoteText_en: "Inspiration exists, but it has to find us working.",
+    quoteAuthor_en: "Pablo Picasso",
+    quoteText_ru: "Вдохновение существует, но оно должно застать нас за работой.",
+    quoteAuthor_ru: "Пабло Пикассо"
+    }, {
+    quoteText_en: "Pick battles big enough to matter, small enough to win.",
+    quoteAuthor_en: "Jonathan Kozol",
+    quoteText_ru: "Выбирай сражения достаточно большие, чтобы гордиться, и достаточно маленькие, чтобы выигрывать.",
+    quoteAuthor_ru: "Джонатан Козол"
+    }, {
+    quoteText_en: "When you doubt your power, you give power to your doubt.",
+    quoteAuthor_en: "Honore de Balzac",
+    quoteText_ru: "Сомневаясь в своей силе, вы даете силу сомнениям.",
+    quoteAuthor_ru: "Оноре де Бальзак"
+    }, {
+    quoteText_en: "The cause is hidden. The effect is visible to all.",
+    quoteAuthor_en: "Ovid",
+    quoteText_ru: "Причина может быть сокрыта. Последствия всегда видны.",
+    quoteAuthor_ru: "Овидий"
+    }, {
+    quoteText_en: "Life shrinks or expands in proportion to one's courage.",
+    quoteAuthor_en: "Anais Nin",
+    quoteText_ru: "Жизнь сжимается и расширяется пропорционально твоей храбрости.",
+    quoteAuthor_ru: "Анаис Нин"
+    }, {
+    quoteText_en: "If you wish to be a writer, write.",
+    quoteAuthor_en: "Epictetus",
+    quoteText_ru: "Если хочешь стать писателем - пиши.",
+    quoteAuthor_ru: "Эпикрет"
+    }
+]
+
+export default quotes_T;

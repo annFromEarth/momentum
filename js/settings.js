@@ -93,10 +93,6 @@ optionsLanguage.forEach(x => x.addEventListener ('click', changeLanguage));
 
 function changeLanguage(e) {
 
-  console.log(localStorage.getItem('city'));
-  console.log(localStorage.getItem('language'));
-  console.log(state.languages);
-
   state.languages = e.target.textContent;
   setLocalStorageLanguage();
   translateSettings();
@@ -110,10 +106,6 @@ function changeLanguage(e) {
   showTime();
   // getLocalStorageCity();
   // setLocalStorageCity();
-
-  console.log(localStorage.getItem('city'));
-  console.log(localStorage.getItem('language'));
-  console.log(state.languages);
 }
 
 // /*choose background source css*/

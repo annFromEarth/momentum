@@ -141,8 +141,6 @@ function setBgGithub() {
 
 function getSlideNext() {
 
-    console.log(background_source)
-
      if (background_source=="github") {
     randomNum ==20 ? randomNum = 1 : randomNum = randomNum+1;
     setBgGithub();
@@ -154,8 +152,6 @@ function getSlideNext() {
 
 
 function getSlidePrev() { 
-
-    console.log(background_source)
 
     if (background_source=="github") {
         randomNum ==1 ? randomNum = 20 : randomNum = randomNum-1;
@@ -223,17 +219,14 @@ function selectOptionSrc(y) {
 
 function setBackroungOfSource() {
     if (background_source == "github") {
-        console.log (background_source);
         setBgGithub()
     }
 
     if (background_source == "unsplash") {
-        console.log (background_source);
         getBackgroundUnsplash()
     }
 
     if (background_source == "flickr") {
-        console.log (background_source);
         getBackgroundFlickr();
     }
 }
@@ -243,12 +236,10 @@ function setBackroungOfSource() {
 
 async function getBackgroundFlickr() {
     try {
-      const urlFlickr = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=3119e9b655c079e1d987c8984edf920d&tags=${timeOfDay}&per_page=20&extras=url_l&format=json&nojsoncallback=1`;
+      const urlFlickr = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=3119e9b655c079e1d987c8984edf920d&tags=${timeOfDay},nature&per_page=20&extras=url_l&format=json&nojsoncallback=1`;
       const resFlickr = await fetch(urlFlickr);
       const dataFlickr = await resFlickr.json(); 
 
-    console.log(dataFlickr)
-    console.log(dataFlickr.photos.photo.length)
 
     let randomF
 
@@ -256,7 +247,6 @@ async function getBackgroundFlickr() {
     getRandomF(dataFlickr.photos.photo.length);
 
       const backgroundURL = dataFlickr.photos.photo[`${randomF}`].url_l;
-      console.log (backgroundURL)
 
       const img = new Image();
         img.src = backgroundURL;
