@@ -101,7 +101,6 @@ deleteActivate()
 
 function todoDelete() {
     arrayTodos = arrayTodos.filter(x => x.description !== this.previousElementSibling.value)
-    console.log(arrayTodos)
     refreshTodoList();
     setTodos(arrayTodos);
     deleteActivate()
