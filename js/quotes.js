@@ -11,7 +11,7 @@ getRandomQuote();
 
 async function getQuotes() {  
 
-    const quotes = '/momentum/assets/json/quotes.json'; //https://github.com/annFromEarth/quotes/blob/main/quotes.json
+    const quotes = 'https://github.com/annFromEarth/momentum/blob/gh-pages/assets/json/quotes.json'; //https://github.com/annFromEarth/quotes/blob/main/quotes.json
     const res = await fetch(quotes);
     const data = await res.json(); 
 
@@ -37,7 +37,9 @@ async function getQuotes() {
   
   export async function translateQuote() {  
 
-    const quotes = '/momentum/assets/json/quotes.json';
+    const quotes = 'https://github.com/annFromEarth/momentum/blob/gh-pages/assets/json/quotes.json';
+
+    // const quotes = '/momentum/assets/json/quotes.json';
     const res = await fetch(quotes);
     const data = await res.json(); 
   
