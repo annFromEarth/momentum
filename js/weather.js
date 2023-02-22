@@ -26,14 +26,12 @@ export function getLocalStorageCity() {
   if (localStorage.getItem('city') =='Minsk' || localStorage.getItem('city') =='Минск') {
     if (localStorage.language == 'ru') {
       city.value = 'Минск';
-      setLocalStorageCity()
-      console.log('gggg')
+      setLocalStorageCity();
     }
 
     else {
       city.value = 'Minsk';
-      setLocalStorageCity()
-      console.log('aaa')
+      setLocalStorageCity();
     }
   }
 
@@ -156,11 +154,11 @@ export async function getWeather() {
     catch {
 
       if (state.languages == 'ru' && city.value) {
-        weatherError.textContent = "Город не найден. Попробуйте ещё раз.";
+        weatherError.textContent = `"${city.value}": Город не найден. Попробуйте ещё раз.`;
         city.value = 'Минск';
       }
       else {
-        weatherError.textContent = "City not found. Please try again.";
+        weatherError.textContent = `"${city.value}":  City not found. Please try again.`;
         city.value = 'Minsk';
       }
 
