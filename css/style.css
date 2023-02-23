@@ -88,6 +88,7 @@ body * {
   background-color: #fff;
   position: relative;
   cursor: pointer;
+  margin-bottom: 2px;
 }
 
 .progress_fill {
@@ -108,43 +109,62 @@ body * {
 /*8888888*/
 
 .volume_controls {
-  margin-bottom: 28px;
+  margin-bottom: 0px;
   margin-right: 20px;
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 50;
 }
 
 .volume_controls .volume-btn {
-  height: 26px;
+  /* height: 30px; */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-star;
 }
 
-.volume_controls .volume-btn .volume {transform: scale(0.7);}
+.volume {
+  width: 40px;
+  height: 40px;
+}
 
-.volume_controls .volume-slider {
+.volumeMute{
+  background-image: url("../assets/img/mute_icon_40.png");
+}
+.volumeLow{
+  background-image: url("../assets/img/sound_low_40.png");
+}
+.volumeHigh{
+  background-image: url("../assets/img/sound_high_40.png");
+}
+.volumeMedium{
+  background-image: url("../assets/img/sound_medium_40.png");
+}
+
+.volume {transform: scale(0.7);}
+
+.volume-slider {
   position: absolute;
-    left: -3px; top: 15px;
-    z-index: -1;
-    width: 0;
-    height: 15px;
-    background: white;
-    box-shadow: 0 0 20px #000a;
-    transition: .25s;
+  left: 40px; top: 15px; 
+  z-index: -1;
+  width: 100%;
+  height: 10px;
+  background: white;
+  transition: .25s;
 }
 
-.volume_controls .volume-slider .volume-percentage {
-  background: coral;
+.volume-percentage {
+  background: #C5B358;
   height: 100%;
-  width: 75%;
+  width: 0%;
 }
 
-.volume_controls .volume-slider:hover { /*BBBBBBB*/
+/* .volume-slider:hover { /*BBBBBBB
   left: -123px;
   width: 120px;
-}
-  
+} */
+   */
   
   /* &:hover {
     .volume-slider {
@@ -156,16 +176,11 @@ body * {
 
 /*8888888*/
 
-
 .playlist {
   text-align: left;
   display: flex;
   flex-direction: column;
 }
-
-/* .play-list {
-  text-align: left;
-} */
 
 .playlist_item {
   position: relative;
@@ -203,32 +218,6 @@ body * {
 .playlist_play_btn.playlist_pause {
   background-image: url("../assets/svg/pause.svg");
 }
-
-/* .play-item {
-  position: relative;
-  padding: 5px;
-  padding-left: 20px;
-  list-style: none;
-  opacity: .8;
-  cursor: pointer;
-  transition: .3s;
-} */
-
-/* .play-item:hover {
-  opacity: 1;
-} */
-
-/* .play-item::before {
-  content: "\2713";  
-  position: absolute;
-  left: 0;
-  top: 2px;
-  font-weight: 900;
-} */
-
-/* .item-active::before {
-  color: #C5B358;
-} */
 
 .player-icon,
 .slider-icon,
